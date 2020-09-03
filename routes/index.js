@@ -50,7 +50,7 @@ client.on('connect', ()=>{
 					lastName: req.body.lastName,
 					email: req.body.email,
 					password: req.body.password,
-					projects: []
+					projects: {}
 				};
 				client.hset('users', req.body.username, JSON.stringify(user));  // store user data
 				res.redirect("/users/" + req.body.username);

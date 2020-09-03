@@ -9,7 +9,8 @@ const express = require('express'),
 
 // require routes
 const indexRoutes = require('./routes/index'),
-	  usersRoutes = require('./routes/users');
+	  usersRoutes = require('./routes/users'),
+	  projectsRoutes = require('./routes/projects');
 
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -19,6 +20,7 @@ app.set("view engine", "ejs");
 // use routes
 app.use(indexRoutes);
 app.use("/users", usersRoutes);
+app.use("/users/:username/projects", projectsRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello World');

@@ -26,15 +26,15 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="/business/<%= business._id %>">Bisi</a>
+					<a class="navbar-brand" href="/<%= user.username %>">Bisi</a>
 				</div>
 				<!-- Links on the RIGHT side of the navbar, collapsing when squeezing the window -->
 				<div class="collapse navbar-collapse" id="bs-nav-demo">
 					<!-- The links on the right side -->
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="/business/<%= business._id %>">Home</a></li>
-						<li><a href="/business/<%= business._id %>/clients">My clients</a></li>
-						<li><a href="/business/<%= business._id %>/edit">Profile</a></li>
+						<li><a href="/users/<%= user.username %>">Home</a></li>
+						<!-- <li><a href="/users/<%= user.username %>/clients">My clients</a></li> -->
+						<li><a href="/users/<%= user.username %>/edit">Profile</a></li>
 						<li><a href="/logout">Sign out</a></li>
 					</ul>
 				</div>

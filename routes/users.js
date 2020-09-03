@@ -6,20 +6,20 @@ const express = require('express'),
 client.on('connect', ()=>{
 	console.log('Redis client connected');
 	
-	router.get('/:id', (req, res)=>{
-		client.hget("users", req.params.id, (err, value)=>{
+	router.get('/:username', (req, res)=>{
+		client.hget("users", req.params.username, (err, value)=>{
 			if(err || !value){
 				if(err) {
 					console.log("error: "+ err);
 					res.sendStatus(404);
-				}  // if no such username exists in db, alert the user
-				else {  // 
-					console.log("invalid user: "+ req.params.id);
+				}
+				else {  // if no such username exists in db, alert the user
+					console.log("invalid user: "+ req.params.username);
 					res.send("invalid url");
 				}
-			} else {
+			} else {  // user is valid
 				console.log(value);
-				res.send(value);
+				res.render('users/show', {user: JSON.parse(value)})
 			}
 		});
 	});
