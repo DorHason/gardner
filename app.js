@@ -8,15 +8,17 @@ const express = require('express'),
 // const cookieParser = require('cookie-parser');
 
 // require routes
-const indexRoutes = require('./routes/index')
+const indexRoutes = require('./routes/index'),
+	  usersRoutes = require('./routes/users');
 
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 app.set("view engine", "ejs");
 // use routes
 app.use(indexRoutes);
+app.use("/users", usersRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello World');
