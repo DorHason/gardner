@@ -1,23 +1,27 @@
 // express
-const express = require('express');
-const app = express();
-const port = 3000;
+const express = require('express'),
+	  app = express(),
+	  port = 3000,
+	  bodyParser = require("body-parser");
 
-const redis = require('redis');
-const client = redis.createClient(); // this creates a new client
+// const shortid = require('shortid');
+// const cookieParser = require('cookie-parser');
 
-client.on('connect', function() {
-	console.log('Redis client connected');
-});
+// require routes
+const indexRoutes = require('./routes/index')
 
-client.on('error', function (err) {
-	console.log('Something went wrong ' + err);
-});
+app.use(bodyParser.urlencoded({extended: true}));
+
+app.use(bodyParser.json())
+
+app.set("view engine", "ejs");
+// use routes
+app.use(indexRoutes);
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Hello World');
 });
 
 app.listen(port, () => {
-  console.log(`Server has started on port ${port}`)
+  console.log(`Server has started on port ${port}`);
 });
