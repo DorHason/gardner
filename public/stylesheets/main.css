@@ -50,3 +50,6 @@ input:-ms-input-placeholder {
 	display: block;
 	margin-bottom: 10px;
 }
+.wrong{
+	color: red;
+}

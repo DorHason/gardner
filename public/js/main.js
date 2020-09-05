@@ -6,7 +6,8 @@ window.addEventListener('load', (loadEvent) => {
       headers : { 
         'Content-Type': 'application/json',
         'Accept': 'application/json'
-       }
+       },
+		credentials: 'include'
     });
 
 		if (response.ok) { // if HTTP-status is 200-299

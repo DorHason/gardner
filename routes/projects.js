@@ -7,9 +7,9 @@ const express = require('express'),
 client.on('connect', ()=>{
 	console.log('Redis client connected');
 	
-	// MIDDLEWARE TO CHECK THAT USER IS VALID
+	// MIDDLEWARE TO CHECK THAT USER IS VALID + CHECK COOKIES
 	router.use('/*', (req, res, next) => {
-		console.log("got to middleware user route");
+		console.log("got to middleware user & cookies route");
 		client.hget("users", req.params.username, (err, value)=>{
 			if(err || !value){
 				if(err) {
@@ -18,11 +18,18 @@ client.on('connect', ()=>{
 				}
 				else {  // if no such username exists in db, alert the user
 					console.log("invalid user: "+ req.params.id);
-					res.send("invalid url");
+					res.redirect("invalid url");  // TODO: handle better
 				}
-			} else {  // user is valid
-				console.log("passed middleware user route");
-				next();
+			} else {  // user is valid, check if cookies are valid as well
+				let user = JSON.parse(value);
+				if(!req.cookie || user.sid.id !== req.cookie) {  // if cookie is invalid, redirect to login/register page
+					res.redirect('/');
+				} else if (!user.sid.remember && Date.now() - user.sid.time > 30 * 1000 * 60){
+					res.redirect('/');
+				} else {
+					console.log("passed middleware user & cookies route");
+					next();
+				}
 			}
 		});
 	});
@@ -59,7 +66,7 @@ client.on('connect', ()=>{
 			let user = JSON.parse(value);
 			if (!user.projects.hasOwnProperty(req.params.project_id)) { // if no such project exists in db, alert the user  
 					console.log("invalid project: "+ req.params.project_id);
-					res.send("invalid url");
+					res.send("invalid url");  // TODO: handle better
 			} else {
 				console.log('passed middleware project route');
 				next();
