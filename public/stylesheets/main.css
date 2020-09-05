@@ -1,0 +1,52 @@
+input::-webkit-input-placeholder {
+  text-align: Left;
+}
+input:-moz-placeholder {
+  text-align: Left;
+}
+input::-moz-placeholder {
+  text-align: Left;
+}
+input:-ms-input-placeholder {
+  text-align: Left;
+}
+.jumbotron .container {
+	text-align: Left;
+}
+
+.jumbotron p{
+	text-align: Left;
+}
+.jumbotron-padding{
+	padding-bottom: 1%;
+}
+.container-padding{
+	margin-bottom: 2%;
+}
+
+.gender-select{
+	text-align: right;
+}
+
+.client-btn{
+	margin-left: 80%;
+}
+.delete-client-btn{
+	display: inline;
+}
+/*Center Hamburger menu content*/
+.navbar .navbar-collapse {
+  text-align: center;
+}
+
+.thumb {
+	padding: 2px;
+}
+
+#h4-padding-bottom{
+	padding-bottom: 2%;
+}
+.note-date{
+	display: block;
+	margin-bottom: 10px;
+}
